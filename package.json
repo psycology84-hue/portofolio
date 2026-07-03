@@ -2,13 +2,15 @@
   "name": "portofolio",
   "version": "0.1.0",
   "private": true,
+
   "scripts": {
     "dev": "next dev",
-    "build": "prisma migrate deploy && prisma generate && next build",
+    "build": "prisma migrate deploy && prisma generate && prisma db seed && next build",
     "start": "next start",
     "lint": "eslint",
     "postinstall": "prisma generate"
   },
+
   "dependencies": {
     "@prisma/client": "^6.19.3",
     "lucide-react": "^1.23.0",
@@ -17,6 +19,7 @@
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
+
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.2",
     "@types/node": "^20",
@@ -30,6 +33,7 @@
     "tsx": "^4.22.4",
     "typescript": "^5"
   },
+
   "prisma": {
     "seed": "tsx prisma/seed.ts"
   }
