@@ -8,48 +8,60 @@ import ActivitySection from "@/components/ActivitySection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
-// Ganti dengan URL API Anda, bisa dari env
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-
 async function getProfile() {
-  const res = await fetch(`${API_BASE}/api/profile`, { cache: "no-store" });
+  const res = await fetch(`/api/profile`, {
+    cache: "no-store",
+  });
+
   if (!res.ok) throw new Error("Failed to fetch profile");
   return res.json();
 }
 
 async function getSkills() {
-  const res = await fetch(`${API_BASE}/api/skills`, { cache: "no-store" });
+  const res = await fetch(`/api/skills`, {
+    cache: "no-store",
+  });
+
   if (!res.ok) throw new Error("Failed to fetch skills");
   return res.json();
 }
 
 async function getExperiences() {
-  const res = await fetch(`${API_BASE}/api/experiences`, { cache: "no-store" });
+  const res = await fetch(`/api/experiences`, {
+    cache: "no-store",
+  });
+
   if (!res.ok) throw new Error("Failed to fetch experiences");
   return res.json();
 }
 
 async function getProjects() {
-  const res = await fetch(`${API_BASE}/api/projects`, { cache: "no-store" });
+  const res = await fetch(`/api/projects`, {
+    cache: "no-store",
+  });
+
   if (!res.ok) throw new Error("Failed to fetch projects");
   return res.json();
 }
 
 async function getActivities() {
-  const res = await fetch(`${API_BASE}/api/activities`, { cache: "no-store" });
+  const res = await fetch(`/api/activities`, {
+    cache: "no-store",
+  });
+
   if (!res.ok) throw new Error("Failed to fetch activities");
   return res.json();
 }
 
 export default async function Home() {
-  // Fetch all data in parallel
-  const [profile, skills, experiences, projects, activities] = await Promise.all([
-    getProfile(),
-    getSkills(),
-    getExperiences(),
-    getProjects(),
-    getActivities(),
-  ]);
+  const [profile, skills, experiences, projects, activities] =
+    await Promise.all([
+      getProfile(),
+      getSkills(),
+      getExperiences(),
+      getProjects(),
+      getActivities(),
+    ]);
 
   return (
     <>
@@ -58,14 +70,21 @@ export default async function Home() {
         <Hero
           name={profile.name}
           bio={profile.bio}
-          profileImage={profile.profileImage || "/images/profile-placeholder.jpg"}
+          profileImage={
+            profile.profileImage ||
+            "/images/profile-placeholder.jpg"
+          }
         />
         <AboutSection bio={profile.bio} />
         <SkillsSection skills={skills} />
         <ExperienceTimeline experiences={experiences} />
         <ProjectsSection projects={projects} />
         <ActivitySection activities={activities} />
-        <ContactSection email={profile.email} github="https://github.com/adiveryfirmansyah" linkedin="#" />
+        <ContactSection
+          email={profile.email}
+          github="https://github.com/adiveryfirmansyah"
+          linkedin="#"
+        />
       </main>
       <Footer />
     </>
