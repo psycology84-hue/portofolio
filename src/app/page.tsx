@@ -8,8 +8,10 @@ import ActivitySection from "@/components/ActivitySection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || `https://${process.env.VERCEL_URL}`;
+
 async function getProfile() {
-  const res = await fetch(`/api/profile`, {
+  const res = await fetch(`${API_BASE}/api/profile`, {
     cache: "no-store",
   });
 
@@ -18,7 +20,7 @@ async function getProfile() {
 }
 
 async function getSkills() {
-  const res = await fetch(`/api/skills`, {
+  const res = await fetch(`${API_BASE}/api/skills`, {
     cache: "no-store",
   });
 
@@ -27,7 +29,7 @@ async function getSkills() {
 }
 
 async function getExperiences() {
-  const res = await fetch(`/api/experiences`, {
+  const res = await fetch(`${API_BASE}/api/experiences`, {
     cache: "no-store",
   });
 
@@ -36,7 +38,7 @@ async function getExperiences() {
 }
 
 async function getProjects() {
-  const res = await fetch(`/api/projects`, {
+  const res = await fetch(`${API_BASE}/api/projects`, {
     cache: "no-store",
   });
 
@@ -45,7 +47,7 @@ async function getProjects() {
 }
 
 async function getActivities() {
-  const res = await fetch(`/api/activities`, {
+  const res = await fetch(`${API_BASE}/api/activities`, {
     cache: "no-store",
   });
 
